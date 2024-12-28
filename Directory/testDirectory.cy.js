@@ -7,16 +7,16 @@ describe('Search Directory Feature',()=>{
 
     // Success Direct to menu Directory
     it('Success Direct to menu Directory', ()=>{
-        DirectoryPage.textLogin().should('have.text','Login');
-        DirectoryPage.inputUsername().type('Admin');
-        DirectoryPage.inputPassword().type('admin123');
-        cy.intercept("GET","**/directory/employees?limit=14&offset=0").as('employees?limit=14&offset=0');
-        DirectoryPage.buttonLogin().click();
-        DirectoryPage.menuDirectory().click();
-        cy.wait('@employees?limit=14&offset=0').then((intercept)=>{
-        expect(intercept.response.statusCode).to.equal(200);});
-        cy.get('[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('have.text','Directory');
-      });
+      DirectoryPage.textLogin().should('have.text','Login');
+      DirectoryPage.inputUsername().type('Admin');
+      DirectoryPage.inputPassword().type('admin123');
+      cy.intercept("GET","**/directory/employees?limit=14&offset=0").as('employees?limit=14&offset=0');
+      DirectoryPage.buttonLogin().click();
+      DirectoryPage.menuDirectory().click();
+      cy.wait('@employees?limit=14&offset=0').then((intercept)=>{
+      expect(intercept.response.statusCode).to.equal(200);});
+      cy.get('[class="oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module"]').should('have.text','Directory');
+    });
     
     //Success search Employee with Complete Data
     it('Success search Employee with Complete Data', ()=>{
